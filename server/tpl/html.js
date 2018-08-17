@@ -11,17 +11,18 @@
 
         </head>
         <body>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h1>Hi Luke!</h1>
-                        <p>This is Scott</p>
-                    </div>
-                    <div class="col-md-4">
-                     <p>测试静态 HTML 页面</p>
-                    </div>
-                </div>                
+        <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Hi Luke!</h1>
+                <p>This is Scott</p>
             </div>
+            <div class="col-md-4">
+             <p>测试静态 HTML 页面</p>
+            </div>
+        </div>
+                        
+    </div>
         </body>
     </html>
  `
