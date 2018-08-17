@@ -1,0 +1,27 @@
+{
+  "name": "douban-trailer-imooc",
+  "version": "1.0.0",
+  "description": "豆瓣电影预告网站",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xyjackxjw/douban-trailer-imooc.git"
+  },
+  "keywords": [
+    "movie",
+    "trailer"
+  ],
+  "author": "Jacky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xyjackxjw/douban-trailer-imooc/issues"
+  },
+  "homepage": "https://github.com/xyjackxjw/douban-trailer-imooc#readme",
+  "dependencies": {
+    "koa": "^2.5.2"
+  }
+}
