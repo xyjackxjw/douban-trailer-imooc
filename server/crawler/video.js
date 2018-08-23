@@ -36,7 +36,7 @@ const sleep = time => new Promise(resolve => {
             var link = it.attr('href')  //预告片的跳转地址
             var cover = it.css('background-image')  //预告片视频的封面图地址,现豆瓣网页有改变，和视频中不一样，需要从style中获取这个background-image的值
 
-            //然后去掉不需要的字符
+            //然后去掉不需要的字符 
             // style="background-image:url(https://img3.doubanio.com/img/trailer/medium/2522393546.jpg?)"
             cover = cover.replace("url(", "")
             cover = cover.replace(/\?/, "")
