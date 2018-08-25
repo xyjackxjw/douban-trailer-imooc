@@ -3,11 +3,25 @@ const app = new Koa()
 const views = require('koa-views')
 const { resolve } = require('path')
 
-const { connect } = require('./database/init')
+const mongoose = require('mongoose')
+const { connect, initSchemas } = require('./database/init')
 
 //连接mongo数据库
 ;(async () => {
     await connect()
+
+    initSchemas()
+
+    // //测试movie的schema是否成功
+    // const Movie = mongoose.model('Movie')
+    // const movies = await Movie.find({})
+    // console.log(movies)
+
+    //运行movie子进程的脚本
+    // require('./tasks/movie.js')
+
+    //运行api子进程的脚本
+    require('./tasks/api.js')
 })()
 
 // const { htmlTpl, ejsTpl } = require('./tpl')

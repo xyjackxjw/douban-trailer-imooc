@@ -45,7 +45,7 @@ const sleep = time => new Promise(resolve => {
         console.log(items)
 
         //将每个详情push到对象数组links[]中
-        if(items.length >= 1){
+        if(items.length >= 1){ 
             items.each((index, item) => {
                 let it = $(item)
                 let doubanId = it.find('div').data('id') // 这个id对应 data-id="30122633" 

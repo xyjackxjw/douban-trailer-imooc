@@ -1,6 +1,15 @@
 const mongoose = require('mongoose')
 const db = 'mongodb://localhost/douban-trailer'
+const { resolve } = require('path')
+
+const glob = require('glob')
+
 mongoose.Promise = global.Promise
+
+//同步加载schema目录下的所有model文件
+exports.initSchemas = () => {
+    glob.sync(resolve(__dirname, './schema', '**/*.js')).forEach(require)
+}
 
 exports.connect = () => {
     //最大重连次数
