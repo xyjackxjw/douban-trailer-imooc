@@ -6,7 +6,6 @@ const {
     resolve
 } = require('path')
 
-
 const {
     connect,
     initSchemas,

@@ -1,4 +1,10 @@
 按照视频中daily-9-1的package.json文件中安装babel依赖，并配置好.babelrc文件
 npm i babel-core babel-plugin-transform-class-properties babel-plugin-transform-decorators-legacy babel-plugin-transform-react-remove-prop-types babel-plugin-transform-runtime babel-polyfill babel-preset-env babel-preset-react babel-preset-stage-0 parcel-bundler -D
+...babel运行环境测试成功
 
-...
+安装parcel，npm install -S parcel-bundler
+安装react用于测试 npm i -S react react-dom react-router-dom
+npm i koa-static -S
+打包sass需要安装：npm i cssnext node-sass autoprefixer -D
+然后根目录下添加postcss.config.js文件
+...parcel打包配置成功
