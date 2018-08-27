@@ -8,3 +8,14 @@ npm i koa-static -S
 打包sass需要安装：npm i cssnext node-sass autoprefixer -D
 然后根目录下添加postcss.config.js文件
 ...parcel打包配置成功
+
+daily-10-2包含了如何将前后端放在一起启动
+1.  "start": "rm -rf dist && rm -rf .cache && NODE_ENV=development nodemon ./start.js",
+   start脚本使用nodemon来启动，在nodemon.json文件中配置好nodemon, 并标出是开发环境
+
+2.  start.js文件启动了babel运行环境，并启动入口文件index.js
+
+3. 在index.js文件中将前端打包的配置（在parcel目录下）作为中间件，加载进去
+
+4. parcel下的index来判断是dev还是prod环境，来分别加载，区别是dev环境会编译打包到dist目录下，再调用。
+      prod则直接调用，这样前端内容就通过koa中间件的方式加载进来了

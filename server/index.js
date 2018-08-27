@@ -13,16 +13,15 @@ const {
 } = require('./database/init')
 
 const R = require('ramda')
-const MIDDLEWARES = ['router'] //定义一个中间件的数组，用ramda方法全部加载进去
 
-
-
+//定义一个中间件的数组，用ramda方法将router和前端打包的parcel目录下的内容，全部加载进去
+const MIDDLEWARES = ['router', 'parcel'] //定义一个中间件的数组，用ramda方法将router全部加载进去
 
 const useMiddlewares = (app) => {
     R.map(
         R.compose(
             R.forEachObjIndexed(
-                initWith => initWith(app)
+                initWith => initWith(app) 
             ),
             require,
             name => resolve(__dirname, `./middlewares/${name}`)
