@@ -19,3 +19,6 @@ daily-10-2包含了如何将前后端放在一起启动
 
 4. parcel下的index来判断是dev还是prod环境，来分别加载，区别是dev环境会编译打包到dist目录下，再调用。
       prod则直接调用，这样前端内容就通过koa中间件的方式加载进来了
+
+daily-10-3 增加react路由，动态加载首页和详情页
+npm i antd@3.0.0 -S

@@ -1,9 +1,13 @@
-import './assets/common.sass'
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter} from 'react-router-dom'
 
-function changeTitle () {
-  window.$('#app').html('Parcel 打包包')
-}
+import App from '/app'  //路由的控制由app.js文件来完成
 
-setTimeout(function () {
-  changeTitle()
-}, 2000)
+const rootElement = document.getElementById('app')
+
+
+render(
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>, rootElement)

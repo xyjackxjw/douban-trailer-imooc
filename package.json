@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/xyjackxjw/douban-trailer-imooc#readme",
   "dependencies": {
+    "antd": "^3.0.0",
     "bcrypt": "^3.0.0",
     "ejs": "^2.6.1",
     "glob": "^7.1.2",
