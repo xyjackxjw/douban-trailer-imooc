@@ -2,3 +2,180 @@
   width: 100%
   height: 100%
   overflow: hidden
+
+.flex-row
+  display: flex
+  align-items: center
+
+.flex-column
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.flex-wrap
+  display: flex
+  align-items: flex-start
+  flex-wrap: wrap
+
+.flex-center
+  align-items: center
+  justify-content: center
+
+.flex-spacebetween
+  justify-content: space-between
+
+.flex-spacearound
+  justify-content: space-around
+
+.align-self-start
+  align-self: flex-start
+
+.flex-1
+  flex: 1
+
+.font-black
+  color: #021D33
+
+.scroll-y
+  height: 100%
+  overflow-x: hidden
+  overflow-y: scroll
+
+.full
+  width: 100%
+  height: 100%
+
+.child-m-r
+  > *
+    margin-right: 20px
+
+.content-spin
+  overflow: hidden
+  > *
+    width: 100% !important
+    height: 100% !important
+    overflow: hidden !important
+
+.important-font
+  font-size: 17px
+  // font-weight: 600
+  // color: #1d39c4
+  color: #001529
+
+.split-line
+  width: 100%
+  height: 1px
+  position: relative
+  border: .5px dashed rgba(199, 199, 199, .8)
+  margin: 25px 0
+  &:before
+    display: inline-block
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    background: #fff
+    padding: 0 15px
+    content: '我只是一条分割线'
+    font-size: 13.5px
+
+.hover-scale
+  transition: all .3s cubic-bezier(.76, .7, .23, .85)
+  &:hover
+    transform: scale(1.19)
+
+.special-table-row
+  min-width: 222px
+  max-width: 222px
+
+.ant-card-meta-title a
+  color: rgba(0, 0, 0, 0.85)
+
+.ant-card-meta-description a
+  color: rgba(0, 0, 0, 0.45)
+
+.page-shade
+  width: 100%
+  height: 100%
+  background: black
+
+.nav-link
+  color: #ddd
+
+.nav-link:hover
+  color: #f9f9f9
+
+.video-wrapper
+  position: fixed
+  top: 0
+  color: #fff
+  font-family: Arial, sans-serif
+  font-size: 14px
+  height: 100%
+  width: calc(100% - 320px)
+
+#videoPlayer
+  width: 100%
+  height: 100%
+
+.video-sidebar
+  position: absolute
+  top: 0
+  right: 0
+  background: #fff
+  width: 320px
+  padding: 20px
+  height: 100%
+  color: #fff
+  z-index: 2001
+
+.tab-content
+  padding-top: 10px
+
+a.media
+  text-decoration: none
+  color: #d3d3d3
+
+a.media:hover
+  color: #fff
+
+.relative-item
+  margin-bottom: 8px
+
+.list-unstyled
+  padding-left: 0
+  list-style: none
+
+.list-unstyled li
+  margin-bottom: 10px
+
+.media
+  margin-bottom: 8px
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-align: start
+  -ms-flex-align: start
+  align-items: flex-start
+
+.media img
+  vertical-align: middle
+  border-style: none
+  margin-right: 10px;
+
+.media-body
+  -webkit-box-flex: 1
+  -ms-flex: 1
+  flex: 1
+  color: #555
+
+.media-title
+  margin-bottom: .25rem!important
+  margin-top: 0!important
+  font-size: 1.1rem
+
+.homeLink
+  display: block
+  text-align: center
+  font-size: 1.25rem
+  color: #555

@@ -24,6 +24,7 @@
   "homepage": "https://github.com/xyjackxjw/douban-trailer-imooc#readme",
   "dependencies": {
     "antd": "^3.0.0",
+    "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
     "ejs": "^2.6.1",
     "glob": "^7.1.2",
@@ -32,6 +33,7 @@
     "koa-static": "^5.0.0",
     "koa-views": "^6.1.4",
     "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "mongoose": "^5.2.9",
     "pug": "^2.0.3",
     "puppeteer": "^1.7.0",
