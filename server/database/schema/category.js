@@ -27,7 +27,7 @@ const categorySchema = new Schema({
     }
 })
 
-//增加一个中间件
+//增加一个中间件,在保存前预先处理
 categorySchema.pre('save', function (next) {
     // 如果一条数据是新数据，则将创建和更新时间都设为当前
     if(this.isNew) {

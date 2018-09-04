@@ -1,8 +1,9 @@
+//爬取豆瓣电影数据,按时间排序,评分6-10
 const url = 'https://movie.douban.com/tag/#/?sort=R&range=6,10&tags='
 
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer') //爬虫工具
 
-//定义一个定时函数，等待一个time后再执行
+//定义一个定时函数，休眠一个time后再执行
 const sleep = time => new Promise(resolve => {
     setTimeout(resolve, time)
 })
@@ -30,19 +31,19 @@ const sleep = time => new Promise(resolve => {
     //这是个分页的，有个选择更多，F12查看源网页内容，这是一个a标签，其id是.more
     await page.waitForSelector('.more')
 
-    //爬取两页的内容
-    for (let i = 0; i<3; i++) {
+    //爬取多少页的内容
+    for (let i = 0; i<1; i++) {
         await sleep(3000)
         await page.click('.more')
     }
 
-    //获取网页内容放入数组对象中,页面中有已加载好的JQuery库，所有可以直接用jQuery
+    //获取网页内容放入数组对象中,页面中有已加载好的JQuery库，所以可以直接用jQuery
     const result = await page.evaluate(() => {
         var $ = window.$ //Jquery
         var items = $('.list-wp a')  //得到所有这一页的详情内容，每个详情都由一个a标签包裹着
         var links = []
 
-        console.log(items)
+        console.log('打印出爬取到的数据:', items)
 
         //将每个详情push到对象数组links[]中
         if(items.length >= 1){ 

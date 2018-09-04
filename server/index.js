@@ -30,11 +30,11 @@ const useMiddlewares = (app) => {
 }
 
 ;(async () => {
-    await connect()
+    await connect() //连接数据库
 
-    initSchemas()
+    initSchemas()   //创建数据库结构
 
-    await initAdmin()
+    await initAdmin()  //创建了一个账户
 
     const app = new Koa()
     await useMiddlewares(app)

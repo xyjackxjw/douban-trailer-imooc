@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const db = 'mongodb://localhost/douban-trailer'
 const { resolve } = require('path')
 
-const glob = require('glob')
+const glob = require('glob')//文件加载工具
 
 mongoose.Promise = global.Promise
 
@@ -16,7 +16,7 @@ exports.initAdmin = async () => {
     let user = await User.findOne({
         username: 'Scott'
     })
-
+    //预设一个管理员账户
     if(!user) {
         const user = new User({
             username: 'Scott',
@@ -42,6 +42,7 @@ exports.connect = () => {
 
         mongoose.connect(db) //5.0版本前还需要一些配置参数
 
+        // 如果数据库断开,重新连接
         mongoose.connection.on('disconnected', () => {
             maxConnectTimes ++
             if (maxConnectTimes < 5) {
@@ -51,6 +52,7 @@ exports.connect = () => {
             }           
         })
 
+        // 如果数据库出错,重新连接
         mongoose.connection.on('error', err => {
             maxConnectTimes ++
             if (maxConnectTimes < 5) {
@@ -61,16 +63,6 @@ exports.connect = () => {
         })
 
         mongoose.connection.once('open', () => {
-
-            //测试一下
-            // const Dog = mongoose.model('Dog',{ name: String })
-            // const doga = new Dog({ name: '阿尔法'})
-
-            // doga.save().then(() => {
-            //     console.log('wang!!!')
-            // })
-
-
             resolve()
             console.log('MongoDB 连接成功！')
         })
