@@ -15,3 +15,7 @@ dist
 
 # Build
 build
+
+.cache
+.vscode
+parcel

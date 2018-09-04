@@ -1,5 +1,10 @@
+// { doubanId: 4058933,
+//     title: '一个明星的诞生',
+//     rate: 8.5,
+//     poster: 'https://img3.doubanio.com/view/photo/l_ration_poster/public/p2524354600.jpg' },
+
 const base = 'https://movie.douban.com/subject/'
-const doubanId = '27040774'
+const doubanId = '4058933'
 const videoBase = `https://movie.douban.com/trailer/231125/#content`
 // http://vt1.doubanio.com/201808231003/68436461d37cf1256056b384b215eb1e/view/movie/M/402310125.mp4
 const puppeteer = require('puppeteer')

@@ -1,6 +1,8 @@
 const  cp = require('child_process')
 const { resolve } = require('path')
 
+
+//获得详情页的视频地址和缩略图
 ;(async () => {
     const script = resolve(__dirname, '../crawler/video') //子进程的脚本
     const child = cp.fork(script, []) //创建这个子进程
@@ -28,6 +30,7 @@ const { resolve } = require('path')
     //监听message消息，得到data，也即子进程返回的结果
     child.on('message', data => {
 
+        // poster: 'https://img3.doubanio.com/view/photo/l_ration_poster/public/p2524354600.jpg
         console.log(data)
     })
 })()
