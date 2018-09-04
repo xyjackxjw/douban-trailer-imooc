@@ -15,7 +15,7 @@ const {
 const R = require('ramda')
 
 //定义一个中间件的数组，用ramda方法将router和前端打包的parcel目录下的内容，全部加载进去
-const MIDDLEWARES = ['router', 'parcel'] //定义一个中间件的数组，用ramda方法将router全部加载进去
+const MIDDLEWARES = ['common', 'router', 'parcel'] //定义一个中间件的数组，用ramda方法将router全部加载进去
 
 const useMiddlewares = (app) => {
     R.map(

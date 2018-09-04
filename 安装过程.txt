@@ -23,4 +23,8 @@ daily-10-2包含了如何将前后端放在一起启动
 daily-10-3 增加react路由，动态加载首页和详情页
 npm i antd@3.0.0 -S
 
-daily-11-1 配置导航页和路由,封装axios
+daily-11-4 配置导航页和路由,封装axio,增加首页电影列表,电影卡片,以及视频播放功能
+
+先完成登录功能,再弄详情页面的内容
+
+npm i koa-logger koa-bodyparser koa-session -S
