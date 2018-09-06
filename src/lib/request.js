@@ -34,6 +34,8 @@ const _request = (params = {}, fn = () => {}) => {
 export default (param) => {
   const type = typeof param
 
+  console.log('这时的type是:', type )
+
   if (type === 'function') {
     param(true)
 

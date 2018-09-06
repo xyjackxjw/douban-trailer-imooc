@@ -9,7 +9,7 @@ import {
 export default class Home extends Component {
   constructor (props) {
     super(props)
-
+    console.log('props是:', props)
     this.state = {
       years: ['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018'],
       type: this.props.match.params.type,
@@ -28,14 +28,14 @@ export default class Home extends Component {
     })
   }
 
+  
   _getAllMovies = () => {
-    console.log('测试1:', window.__LOADING__)
-    // request(window.__LOADING__)({
-    request({
+    console.log('测试window.__LOADING__:', window.__LOADING__)
+
+    request(window.__LOADING__)({
       method: 'get',
       url: `/api/v0/movies?type=${this.state.type || ''}&year=${this.state.year || ''}`
     }).then(res => {
-        console.log('测试2',res)
       this.setState({
         movies: res
       })
@@ -47,6 +47,9 @@ export default class Home extends Component {
   }
 
   _renderContent = () => {
+    console.log('首页渲染的states:', this.state)
+
+
     const { movies } = this.state
 
     if (!movies || !movies.length) return null

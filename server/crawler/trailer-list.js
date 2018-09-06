@@ -1,5 +1,5 @@
 //爬取豆瓣电影数据,按时间排序,评分6-10
-const url = 'https://movie.douban.com/tag/#/?sort=R&range=6,10&tags='
+const url = 'https://movie.douban.com/tag/#/?sort=R&range=6,10&tags=电影'
 
 const puppeteer = require('puppeteer') //爬虫工具
 
@@ -52,7 +52,7 @@ const sleep = time => new Promise(resolve => {
                 let doubanId = it.find('div').data('id') // 这个id对应 data-id="30122633" 
                 let title = it.find('.title').text()
                 let rate = Number(it.find('.rate').text()) // 豆瓣评分是文本，转化为数字
-                let poster = it.find('img').attr('src').replace('s_ratio', 'l_ration')//海报图片的src是小图，替换为大的高清图
+                let poster = it.find('img').attr('src').replace('s_ratio', 'l_ratio').replace('jpg', 'webp')//海报图片的src是小图，替换为大的高清图
 
                 links.push({
                     doubanId,

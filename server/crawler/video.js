@@ -29,15 +29,30 @@ process.on('message', async movies => {
       var $ = window.$
       var it = $('.related-pic-video')
 
-      if (it && it.length > 0) {
-        var link = it.attr('href')
-        var cover = it.find('img').attr('src')
+      if (it && it.length > 0){
+        var link = it.attr('href')  //预告片的跳转地址
+        var cover = it.css('background-image')  //预告片视频的封面图地址,现豆瓣网页有改变，和视频中不一样，需要从style中获取这个background-image的值
 
+        //然后去掉不需要的字符 
+        // style="background-image:url(https://img3.doubanio.com/img/trailer/medium/2522393546.jpg?)"
+
+        //    \"https://img3.doubanio.com/img/trailer/medium/2524216073.jpg\"
+        //     https://img3.doubanio.com/img/trailer/medium/2533207242.jpg1536055077\"
+        cover = cover.replace("url(", "")
+        cover = cover.replace(/\?/, "")
+        cover = cover.replace(/\)/, "")
+        cover = cover.replace(/\"/, "")
+        let cover_parts = cover.split('.jpg')
+        cover = cover_parts[0] + '.jpg'
+        
+        console.log('cover地址是:', cover)
+
+        //将得到的结果封装成对象返回给result
         return {
-          link,
-          cover
+            link,
+            cover
         }
-      }
+    }
 
       return {}
     })
@@ -48,7 +63,7 @@ process.on('message', async movies => {
       await page.goto(result.link, {
         waitUntil: 'networkidle2'
       })
-      await sleep(2000)
+      await sleep(1000)
 
       video = await page.evaluate(() => {
         var $ = window.$

@@ -1,12 +1,8 @@
 // http: //api.douban.com/v2/movie/subject/1764796
-
-//http的request获取数据
-const rp = require('request-promise-native')
-
+const rp = require('request-promise-native')  //http的request获取数据
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
 const Category = mongoose.model('Category')
-
 
 //定义一个通过doubanId获取豆瓣API的数据的函数
 async function fetchMovie(item) {
@@ -33,21 +29,6 @@ async function fetchMovie(item) {
 
 //立即执行函数，先通过movies.js中获取的数据，粘贴两条doubanId过来，然后获取API中的全部这两条电影数据
 ;(async () => {
-    //测试数据
-    // let movies = [{
-    //         doubanId: 30223604,
-    //         title: '致亲爱的法官大人',
-    //         rate: 7,
-    //         poster: 'https://img3.doubanio.com/view/photo/l_ration_poster/public/p2528264333.jpg'
-    //     },
-    //     {
-    //         doubanId: 30232234,
-    //         title: '魔女的爱情',
-    //         rate: 6.9,
-    //         poster: 'https://img3.doubanio.com/view/photo/l_ration_poster/public/p2528449352.jpg'
-    //     },
-    // ]
-
     //从数据库中查询，补充不完整的数据
     let movies = await Movie.find({
         //如果存在以下情况
@@ -127,6 +108,7 @@ async function fetchMovie(item) {
                     if (item && item.split('(').length > 0) {
                         let parts = item.split('(')
                         let date = parts[0]
+                        let country = '未知'
 
                         if (parts[1]) {
                             country = parts[1].split(')')[0]
@@ -145,6 +127,10 @@ async function fetchMovie(item) {
             tags.forEach(tag => {
                 movie.tags.push(tag.name)
             })
+
+            tags.forEach(tag => {
+                movie.tags.push(tag.name)
+              })
 
             await movie.save()
         }

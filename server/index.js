@@ -29,12 +29,25 @@ const useMiddlewares = (app) => {
     )(MIDDLEWARES)
 }
 
+//定义一个定时函数，休眠一个time后再执行
+const sleep = time => new Promise(resolve => {
+    setTimeout(resolve, time)
+})
+
 ;(async () => {
     await connect() //连接数据库
 
     initSchemas()   //创建数据库结构
 
     await initAdmin()  //创建了一个账户
+
+    // require('./tasks/movie')
+    // // await sleep(5000)
+    // require('./tasks/api')
+    // // await sleep(5000)
+    // require('./tasks/trailer')
+    // await sleep(5000)
+    // require('./tasks/qiniu')
 
     const app = new Koa()
     await useMiddlewares(app)

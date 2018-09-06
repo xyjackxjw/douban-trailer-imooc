@@ -1,10 +1,11 @@
+
 import React, { Component } from 'react'
 import moment from 'moment'
 import { Card, Row, Col, Badge, Modal, Spin, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 import 'moment/locale/zh-cn'
 
-const site = 'http://video.iblack7.com/'
+const site = 'http://peie35zt9.bkt.clouddn.com/'
 const Meta = Card.Meta
 
 moment.locale('zh-cn')
@@ -25,8 +26,10 @@ export default class Content extends Component {
   }
 
   _jumpToDetail = () => {
+    console.log('开始调到详情页1', this.props)
     const { url } = this.props
 
+    console.log('开始调到详情页2', url)
     url && window.open(url)
   }
 
@@ -97,6 +100,7 @@ export default class Content extends Component {
                       {it.rate} 分
                     </Badge>
                   ]}
+                  // 七牛的工具对图片进行处理
                   cover={<img onClick={() => this._showModal(it)} src={site + it.posterKey + '?imageMogr2/thumbnail/x1680/crop/1080x1600'} />}
                 >
                   <Meta
