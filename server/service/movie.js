@@ -9,7 +9,6 @@ export const findAndRemove = async (id) => {
     }
 }
   
-
 export const getAllMovies = async (type, year) => {
     let query = {}
 

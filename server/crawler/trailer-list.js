@@ -32,7 +32,7 @@ const sleep = time => new Promise(resolve => {
     await page.waitForSelector('.more')
 
     //爬取多少页的内容
-    for (let i = 0; i<1; i++) {
+    for (let i = 0; i<3; i++) {
         await sleep(3000)
         await page.click('.more')
     }
@@ -43,7 +43,17 @@ const sleep = time => new Promise(resolve => {
         var items = $('.list-wp a')  //得到所有这一页的详情内容，每个详情都由一个a标签包裹着
         var links = []
 
-        console.log('打印出爬取到的数据:', items)
+        // let body
+
+        // try {
+        //     body = JSON.parse(items)
+
+        //     console.log('获取每一条API得到body结果：', body)
+        // } catch (error) {
+        //     console.log(error)
+        // }
+        
+        console.log('打印出爬取到的数据:', typeof items)
 
         //将每个详情push到对象数组links[]中
         if(items.length >= 1){ 
@@ -52,7 +62,7 @@ const sleep = time => new Promise(resolve => {
                 let doubanId = it.find('div').data('id') // 这个id对应 data-id="30122633" 
                 let title = it.find('.title').text()
                 let rate = Number(it.find('.rate').text()) // 豆瓣评分是文本，转化为数字
-                let poster = it.find('img').attr('src').replace('s_ratio', 'l_ratio').replace('jpg', 'webp')//海报图片的src是小图，替换为大的高清图
+                let poster = it.find('img').attr('src').replace('s_ratio', 'l_ratio').replace('jpg', 'webp')//海报图片的src是小图，替换为大的高清图,后缀也改为webp
 
                 links.push({
                     doubanId,
@@ -67,7 +77,8 @@ const sleep = time => new Promise(resolve => {
     })
 
     browser.close() //关闭这个模拟的browser
-    console.log(result)
+    
+    // console.log('发送出来的爬取结果:', result)
 
     //将这个结果发送出去
     process.send({result})

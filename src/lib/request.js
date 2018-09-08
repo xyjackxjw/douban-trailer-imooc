@@ -18,7 +18,7 @@ const _request = (params = {}, fn = () => {}) => {
 
       if (success) {
         fn(false)
-
+        console.log('没有错!!!')
         return data
       }
 
@@ -26,7 +26,7 @@ const _request = (params = {}, fn = () => {}) => {
     })
     .catch(err => {
       fn(false)
-
+      console.log('报错!!!')
       message.err(String(err || '网络错误'))
     })
 }

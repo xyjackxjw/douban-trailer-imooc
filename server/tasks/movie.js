@@ -21,6 +21,10 @@ const Movie = mongoose.model('Movie')
     child.on('exit', code => {
         if(invoked) return
 
+        // console.log('invoked是:',invoked) //子进程退出时invoked是false
+        // console.log('code是:',code) //子进程退出时code是0
+        console.log('获取trailer的子进程正常退出了')
+
         invoked = true
         let err = code === 0 ? null : new Error('exit code:' + code)
 
@@ -31,6 +35,9 @@ const Movie = mongoose.model('Movie')
     child.on('message', data => {
         let result = data.result
 
+        console.log('获取trailer的子进程得到的结果:', result)
+
+        //先判断数据库中有没有这条数据,没有的话,把每一条数据都存入数据库
         result.forEach(async item => {
             let movie = await Movie.findOne({
                 doubanId: item.doubanId

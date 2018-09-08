@@ -50,6 +50,7 @@ userSchema.virtual('isLocked').get(function () {
 
 //增加一个中间件
 userSchema.pre('save', function (next) {
+  console.log('this.isNew是:', this.isNew ) //这个this.isNew可以用来判断一条要save的数据是不是新数据
   if (this.isNew) {
     this.meta.createdAt = this.meta.updatedAt = Date.now()
   } else {

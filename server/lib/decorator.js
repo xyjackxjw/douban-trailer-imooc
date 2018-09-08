@@ -2,6 +2,7 @@ const Router = require('koa-router')
 const { resolve } = require('path')
 const _ =require('lodash')
 const glob = require('glob')
+const R = require('ramda')
 
 const symbolPrefix = Symbol('prefix')
 const routerMap = new Map()
@@ -65,7 +66,7 @@ export const put = path => router({
 })
 
 export const del = path => router({
-    method: 'del',
+    method: 'delete',
     path: path
 })
 
@@ -79,3 +80,74 @@ export const all = path => router({
     path: path
 })
 
+const decorate = (args, middleware) => {
+    let [ target, key, descriptor ] = args
+  
+    target[key] = isArray(target[key])
+    target[key].unshift(middleware)
+  
+    return descriptor
+  }
+  
+  const convert = middleware => (...args) => decorate(args, middleware)
+  
+  //是否登录
+  export const auth = convert(async (ctx, next) => {
+    console.log('ctx.session.user')
+    console.log(ctx.session.user)
+    if (!ctx.session.user) {
+      return (
+        ctx.body = {
+          success: false,
+          code: 401,
+          err: '登录信息失效，重新登录'
+        }
+      )
+    }
+  
+    await next()
+  })
+  
+//   是否有权限
+  export const admin = roleExpected => convert(async (ctx, next) => {
+    const { role } = ctx.session.user
+  
+    console.log('admin session')
+    console.log(ctx.session.user)
+  
+    if (!role || role !== roleExpected) {
+      return (
+        ctx.body = {
+          success: false,
+          code: 403,
+          err: '你没有权限，来错地方了'
+        }
+      )
+    }
+  
+    await next()
+  })
+  
+  // 对前端传过来的字段进行校验
+  export const required = rules => convert(async (ctx, next) => {
+    let errors = []
+  
+    const checkRules = R.forEachObjIndexed(
+      (value, key) => {
+        errors = R.filter(i => !R.has(i, ctx, ctx.request[key]))(value)
+      }
+    )
+  
+    checkRules(rules)
+  
+    if (errors.length) {
+      ctx.body = {
+        success: false,
+        code: 412,
+        err: `${errors.join(',')} is required`
+      }
+    }
+  
+    await next()
+  })
+  
