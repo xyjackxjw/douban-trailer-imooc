@@ -1,3 +1,4 @@
+// 第一步,先爬取电影分类页面的数据,得到一个含有dobanId的list出来,也含有其它的一些页面中的信息,放入数据库
 const  cp = require('child_process')
 const { resolve } = require('path')
 const mongoose = require('mongoose')
@@ -31,7 +32,7 @@ const Movie = mongoose.model('Movie')
         console.log(err)
     })
 
-    //监听message消息，得到data，也即子进程返回的结果
+    //监听message消息，得到data，也即子进程返回的结果,返回的data是一个包装好的对象
     child.on('message', data => {
         let result = data.result
 

@@ -20,3 +20,7 @@ const luke = new Boy() //创建boy类的实例时就会执行这个speak
 
 luke.run()
 
+/**执行结果
+ * i can run!
+   i can speak:中文
+ */

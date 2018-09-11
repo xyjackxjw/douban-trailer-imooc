@@ -4,6 +4,7 @@ const { resolve } = require('path')
 
 const glob = require('glob')//文件加载工具
 
+// Mongoose 自带的  Promise 不提供 catch。已经弃用了。
 mongoose.Promise = global.Promise
 
 //同步加载schema目录下的所有model文件

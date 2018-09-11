@@ -48,7 +48,7 @@ userSchema.virtual('isLocked').get(function () {
   return !!(this.lockUntil && this.lockUntil > Date.now())
 })
 
-//增加一个中间件
+//增加一个中间件,生成时间和更新时间
 userSchema.pre('save', function (next) {
   console.log('this.isNew是:', this.isNew ) //这个this.isNew可以用来判断一条要save的数据是不是新数据
   if (this.isNew) {
@@ -60,7 +60,7 @@ userSchema.pre('save', function (next) {
   next()
 })
 
-//增加一个中间件,对密码进行加盐
+//增加一个中间件,对用户密码进行加盐
 userSchema.pre('save', function (next) {
   if (!this.isModified('password')) return next()
 

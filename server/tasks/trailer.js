@@ -1,11 +1,10 @@
+//第三步,进入到每一个预告片的视频页面,爬取详情页的视频地址和缩略图,放入数据库
 const  cp = require('child_process')
 const { resolve } = require('path')
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
 const Category = mongoose.model('Category')
 
-
-//获得详情页的视频地址和缩略图
 ;(async () => {
     let movies = await Movie.find({
         $or: [
@@ -72,6 +71,7 @@ const Category = mongoose.model('Category')
           }
         }
       })
-    
-      child.send(movies)
+  // 这里的第三步是需要将查找到的满足条件的movies,先发送给子进程,
+  // 而第一步没有传数据给子进程
+  child.send(movies)
 })()

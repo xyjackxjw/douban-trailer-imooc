@@ -1,19 +1,21 @@
 const {
-  controller,
-  get,
-  post,
-  del,
-  auth,
-  admin,
-  required
-} = require('../lib/decorator')
+        controller,
+        get,
+        post,
+        del,
+        auth,     //是否登录
+        admin,    //   是否有权限
+        required // 对前端传过来的字段进行校验
+      } = require('../lib/decorator')
+
 const {
-  checkPassword
-} = require('../service/user')
+        checkPassword
+      } = require('../service/user')
+      
 const {
-  getAllMovies,
-  findAndRemove
-} = require('../service/movie')
+        getAllMovies,
+        findAndRemove
+      } = require('../service/movie')
 
 @controller('/admin')
 export class adminController {

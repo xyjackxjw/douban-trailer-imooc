@@ -29,6 +29,10 @@ daily-11-4 配置导航页和路由,封装axio,增加首页电影列表,电影�
 
 npm i koa-logger koa-bodyparser koa-session -S
 
+
+9月11日,基本完成调通视频学习内容,上传到daily-12-5. 后面还有服务器的部署这一块,先学习部署的视频再弄
+下面可以细化一些其它功能进去
+
 https://img3.doubanio.com/view/photo/l_ratio_poster/public/p2525635186.webp
 https://img3.doubanio.com/view/photo/l_ration_poster/public/p2525635186.jpg
 

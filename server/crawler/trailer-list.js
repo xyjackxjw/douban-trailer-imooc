@@ -43,8 +43,8 @@ const sleep = time => new Promise(resolve => {
         var items = $('.list-wp a')  //得到所有这一页的详情内容，每个详情都由一个a标签包裹着
         var links = []
 
+        {
         // let body
-
         // try {
         //     body = JSON.parse(items)
 
@@ -52,7 +52,7 @@ const sleep = time => new Promise(resolve => {
         // } catch (error) {
         //     console.log(error)
         // }
-        
+        }
         console.log('打印出爬取到的数据:', typeof items)
 
         //将每个详情push到对象数组links[]中

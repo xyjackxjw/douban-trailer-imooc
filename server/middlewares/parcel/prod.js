@@ -5,7 +5,7 @@ const { resolve } = require('path')
 
 const r = path => resolve(__dirname, path)
 
-
+// 启动dist目录的服务
 export const prod = async app => {
     await bundler.bundle()
 

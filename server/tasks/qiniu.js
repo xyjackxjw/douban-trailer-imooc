@@ -1,9 +1,11 @@
+// 第四步,将第三步获取到的海报,视频,和视频封面图三个东西上传到七牛,并将生成的地址链接保存到数据库中
 const qiniu = require('qiniu')
 const nanoid = require('nanoid')
-const config = require('../config')
+const config = require('../config')// 七牛api的配置
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
 
+// 七牛api
 const bucket = config.qiniu.bucket
 const mac = new qiniu.auth.digest.Mac(config.qiniu.AK, config.qiniu.SK)
 const cfg = new qiniu.conf.Config()
@@ -48,6 +50,7 @@ const uploadToQiniu = async (url, key) => {
     for (let i = 0; i < movies.length; i++) {
       let movie = movies[i]
   
+      // Nano ID是一个JavaScript的一个随机 ID 生成模块
       if (movie.video && !movie.videoKey) {
         try {
           console.log('开始传 video')
@@ -57,7 +60,7 @@ const uploadToQiniu = async (url, key) => {
           console.log('开始传 poster')
           let posterData = await uploadToQiniu(movie.poster, nanoid() + '.png')
   
-  
+          // 七牛上传成功,会将nanoid生成的key返回出来,这个key也就是上传的地址内容
           if (videoData.key) {
             movie.videoKey = videoData.key
           }
@@ -70,7 +73,7 @@ const uploadToQiniu = async (url, key) => {
   
           console.log(movie)
   
-          await movie.save()
+          await movie.save() //存入数据库
         } catch (err) {
           console.log(err)
         }

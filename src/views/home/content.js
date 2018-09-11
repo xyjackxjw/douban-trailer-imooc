@@ -13,6 +13,7 @@ moment.locale('zh-cn')
 export default class Content extends Component {
   state = { visible: false }
 
+  //关闭视频页面
   _handleClose = (e) => {
     if (this.player && this.player.pause) {
       this.player.pause()
@@ -29,8 +30,9 @@ export default class Content extends Component {
     console.log('开始调到详情页1', this.props)
     const { url } = this.props
 
-    console.log('开始调到详情页2', url)
-    url && window.open(url)
+    
+    url && window.open(url)//直接打开新窗口跳转
+    console.log('开始调到详情页2', url )
   }
 
   //打开视频播放弹窗
@@ -70,7 +72,7 @@ export default class Content extends Component {
   }
 
   _renderContent = () => {
-    const { movies } = this.props
+    const { movies } = this.props  //从home的index传过来的就只有movies
 
     return (
       <div style={{ padding: '30px' }}>
@@ -89,7 +91,7 @@ export default class Content extends Component {
                   bordered={false}
                   hoverable
                   style={{ width: '100%' }}
-                  // 配置card底部的说明图片和文字部分
+                  // 配置card底部的说明图标和文字部分
                   actions={[
                     <Badge>
                       <Icon style={{marginRight: '2px'}} type='clock-circle' />
@@ -100,13 +102,16 @@ export default class Content extends Component {
                       {it.rate} 分
                     </Badge>
                   ]}
-                  // 七牛的工具对图片进行处理
-                  cover={<img onClick={() => this._showModal(it)} src={site + it.posterKey + '?imageMogr2/thumbnail/x1680/crop/1080x1600'} />}
+                  // 七牛的工具对图片进行处理,cover可以跳转到视频预览
+                  cover = { 
+                    < img onClick = { () => this._showModal(it) }
+                          src = { site + it.posterKey + '?imageMogr2/thumbnail/x1680/crop/1080x1600' } />}
                 >
+                  {/* 整个card的文字说明部分,可以跳到详情页 */}
                   <Meta
                     style={{height: '202px', overflow: 'hidden'}}
                     title={<Link to={`/detail/${it._id}`}>{it.title}</Link>}
-                    onClick={this._jumpToDetail}
+                    onClick={this._jumpToDetail}//这个跳转是没有起作用.没有传入url
                     description={<Link to={`/detail/${it._id}`}>{it.summary}</Link>}
                    />
                 </Card>

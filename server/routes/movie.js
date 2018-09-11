@@ -1,27 +1,16 @@
-// import { log } from 'util';
 
-// const Router = require('koa-router')
-// const mongoose = require('mongoose')
-// const router = new Router()
 const { controller, get, post, put, del} = require('../lib/decorator')
 const { getAllMovies,
         getMovieDetail,
         getRelativeMovies
       } = require('../service/movie')
 
-//装饰器声明一个控制器
+//装饰器声明一个控制器,具体的实现在decorator中,传入了path的参数
 @controller('/api/v0/movies')
 export class movieController {
     @get('/') //查询所有电影
-    async getMovies (ctx, next) {
-        //
-        // const Movie = mongoose.model('Movie')
-
+    async getMovies (ctx, next) {       
         //业务逻辑代码，这里是查询功能，移到service层进行处理，control则只负责路由
-        // const movies = await Movie.find({}).sort({
-        //     'meta.createdAt': -1
-        // })
-
         const { type, year } = ctx.query
         const movies = await getAllMovies(type, year)
     
@@ -33,11 +22,6 @@ export class movieController {
 
     @get('/:id') //查询单个电影，以及相关电影
     async getMovieDetail (ctx, next) {
-        // const Movie = mongoose.model('Movie')
-
-        // const id = ctx.params.id
-        // const movie = await Movie.findOne({_id: id})
-
         const id = ctx.params.id
         const movie = await getMovieDetail(id)
         const relativeMovies = await getRelativeMovies(movie)
@@ -50,9 +34,11 @@ export class movieController {
             success: true
         } 
     }
-
 }
-    
+/** 
+ * 修饰器是一个对类进行处理的函数。修饰器函数的第一个参数，就是所要修饰的目标类。
+ * 
+*/    
 
  
 // router.get('/movies', async (ctx, next) => {

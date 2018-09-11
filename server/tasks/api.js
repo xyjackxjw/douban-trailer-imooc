@@ -1,4 +1,4 @@
-// http: //api.douban.com/v2/movie/subject/1764796
+// 第二步.通过doubanId直接获取api中的数据,补充一些数据到数据库中
 const rp = require('request-promise-native')  //http的request获取数据
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
@@ -115,6 +115,7 @@ async function fetchMovie(item) {
                 movie.pubDate = pubdates
             }
 
+            // 这里每次都添加了tags,再调试一下
             tags.forEach(tag => {
                 movie.tags.push(tag.name)
               })

@@ -14,18 +14,19 @@ const TabPane = Tabs.TabPane
 const DPlayer = window.DPlayer
 const site = 'http://peie35zt9.bkt.clouddn.com/'
 
+// tab切换时的回调,得到key后可以加一些操作
 const callback = (key) => {
-  console.log(key)
+  console.log('callback的key是:', key)
 }
 
 export default class Detail extends Component {
   constructor (props) {
     super(props)
-
+    // console.log('传到详情页的props是:', props)
     this.state = {
       movie: null,
       relativeMovies: [],
-      _id: this.props.match.params.id
+      _id: this.props.match.params.id  //将父页面传过来的id给state的id,后面根据这个id来获取详情的电影数据
     }
   }
 
@@ -46,7 +47,7 @@ export default class Detail extends Component {
       this.setState({
         movie,
         relativeMovies
-      }, () => {
+      }, () => {   //页面状态更新成功后,用这个回调函数创建播放器的实例,
         this.player = new DPlayer({
           container: document.getElementById('videoPlayer'),
           screenshot: true,
@@ -73,10 +74,8 @@ export default class Detail extends Component {
 
     return (
       <div className='flex-row full'>
-        <div className='page-shade'>
-          <div className='video-wrapper'>
-            <div id='videoPlayer' data-src={site + movie.coverKey} data-video={site + movie.videoKey} />
-          </div>
+        <div className='page-shade'> 
+          {/* 详情页,有两个tab,关于本片,同类电影          */}
           <div className='video-sidebar'>
             <Link className='homeLink' to={'/'}>回到首页</Link>
             <Tabs defaultActiveKey='1' onChange={callback}>
@@ -111,8 +110,32 @@ export default class Detail extends Component {
               </TabPane>
             </Tabs>
           </div>
+          
+          {/* 详情页电影的预告片播放 */}
+          <div className='video-wrapper'>
+            <div id='videoPlayer' data-src={site + movie.coverKey} data-video={site + movie.videoKey} />
+          </div>                
         </div>
       </div>
     )
   }
 }
+
+
+/**传到详情页的props是: 
+ * 
+location :
+  hash:""
+  key:"m6k9s9"
+  pathname:"/detail/5b93709f159a8b135303ed8b"
+  search:""
+  state:undefined
+
+match:
+  isExact:true
+  params: {
+      id: "5b93709f159a8b135303ed8b"
+    }
+  path:"/detail/:id"
+  url:"/detail/5b93709f159a8b135303ed8b"
+ */

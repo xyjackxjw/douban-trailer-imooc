@@ -15,7 +15,7 @@ const FormItem = Form.Item
 export default class Login extends Component {
   constructor (props) {
     super(props)
-
+    // console.log('开始调到登录页的props', this.props)
     this.state = {
       loading: false
     }
@@ -27,6 +27,7 @@ export default class Login extends Component {
     })
   }
 
+  // 处理登录请求,post到后端,返回成功跳到管理的list页面
   _handleSubmit = (e) => {
     e.preventDefault()
 
@@ -46,14 +47,14 @@ export default class Login extends Component {
   }
 
   render () {
-    const { getFieldDecorator } = this.props.form
+    const { getFieldDecorator } = this.props.form  //antd对于表单的验证装饰器方式
 
     return (
       <div>
         <Form onSubmit={this._handleSubmit} className='login-form'>
           <h3 style={{ textAlign: 'center' }}>黑骑预告片后台</h3>
           <FormItem>
-            {
+            { //注意这里()()的写法
               getFieldDecorator('email', {
                 rules: [{
                   required: true,
@@ -72,12 +73,12 @@ export default class Login extends Component {
                   message: '请填入密码'
                 }]
               })(
-                <Input type='password' prefix={<Icon type='user' style={{ fontSize: 13 }} />} placeholder='Password' />
+                <Input type='password' prefix={<Icon type='question' style={{ fontSize: 13 }} />} placeholder='Password' />
               )
             }
           </FormItem>
           <FormItem>
-            <Button style={{width: '100%'}} htmlType='submit' loading={this.state.loading}>登录</Button>
+            <Button  style={{width: '100%'}} htmlType='submit' loading={this.state.loading}>登录</Button>
           </FormItem>
         </Form>
       </div>

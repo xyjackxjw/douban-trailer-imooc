@@ -18,10 +18,12 @@ export default class Home extends Component {
     }
   }
 
+  //页面渲染时取得所有电影数据,也可根据年份或者类别进行筛选一下
   componentDidMount () {
     this._getAllMovies()
   }
 
+  //将选择的年份赋给states
   _selectItem = ({ key }) => {
     this.setState({
       selectedKey: key
@@ -36,7 +38,7 @@ export default class Home extends Component {
       method: 'get',
       url: `/api/v0/movies?type=${this.state.type || ''}&year=${this.state.year || ''}`
     }).then(res => {
-      this.setState({
+      this.setState({ //获取到数据,更新页面状态
         movies: res
       })
     }).catch(() => {
@@ -63,12 +65,13 @@ export default class Home extends Component {
     const { years, selectedKey } = this.state
     return (
       <Layout {...this.props}>
-        <div className='flex-row full'>
-          <Menu
+        <div className='flex-row full'>  
+          {/* 边菜单 */}      
+          <Menu   
             defaultSelectedKeys={[selectedKey]}
             mode='inline'
             style={{ height: '100%', overflowY: 'scroll', maxWidth: 230 }}
-            onSelect={this._selectItem}
+            onSelect={this._selectItem} //边菜单的选择项,这里是年份
             className='align-self-start'
           >
           {

@@ -1,3 +1,4 @@
+// 布局文件
 import React, { Component } from 'react'
 import {
   Menu,
@@ -5,6 +6,7 @@ import {
 } from 'antd'
 import navRoutes from '../nav'
 
+// 载入主菜单选择项的对应内容
 const getMenuContent = ({ path = '/', name }) => (
   <a href={path} style={{color: '#fff2e8'}}>
     {name}
@@ -22,10 +24,14 @@ export default class LayoutDefault extends Component {
 
   componentDidMount () {
     window.__LOADING__ = this.toggleLoading
+    console.log('123布局文件的props:', this.props)
+    console.log('123布局文件的state:', this.state)
   }
 
   componentWillUnMount () {
     window.__LOADING__ = null
+    console.log('456布局文件的props:', this.props)
+    console.log('456布局文件的state:', this.state)
   }
 
   matchRouteName = this.props.match
@@ -47,11 +53,13 @@ export default class LayoutDefault extends Component {
 
     return (
       <div className='flex-column' style={{ width: '100%', height: '100%' }}>
+        {/* 顶头菜单,缺省选择项是匹配到nav的路径 */}
         <Menu
           style={{ fontSize: 13.5, backgroundColor: '#000' }}
           mode='horizontal'
           defaultSelectedKeys={[this.matchRouteName]}
         >
+          {/* 第一个选项,即首页菜单的链接 */}
           <Menu.Item
             style={{
               marginLeft: 24,
@@ -66,6 +74,7 @@ export default class LayoutDefault extends Component {
               color: '#fff2e8'
             }}>黑骑预告片网站</a>
           </Menu.Item>
+          {/* 第二个开始的其它选项 */}
           {
             navRoutes.map((e, i) => (
               <Menu.Item key={e.name}>

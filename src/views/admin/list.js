@@ -19,25 +19,28 @@ export default class AdminList extends Component {
     this.state = {
       dataSource: [],
       loading: false,
-      columns: [{
+      columns: 
+      [{
         title: '海报',
         dataIndex: 'posterKey',
         key: 'posterKey',
         render: (text, record) => (<img width='150' src={site + record.posterKey} />)
-      }, {
+      }, 
+      {
         title: '名字',
         dataIndex: 'title',
         key: 'title'
-      // }, {
+      }, 
+      // {
       //   title: '上映时间',
-      //   dataIndex: 'pubdate',
+      //   dataIndex: ' ',
       //   key: 'pubdate',
       //   render: (text, record) => (
       //     record.pubdate.map((it, i) => (
       //       <p key={i}>{moment(it.date).format('YYYY-MM-DD')} {it.country}</p>
       //     ))
       //   )
-      },
+      // },
       {
         title: '评分',
         dataIndex: 'rate',
@@ -64,16 +67,16 @@ export default class AdminList extends Component {
           ))
         )
       },
-      {
-        title: '标签',
-        dataIndex: 'tags',
-        key: 'tags',
-        render: (text, record) => (
-          record.tags.map((it, i) => (
-            <p key={i}>{it}</p>
-          ))
-        )
-      },
+      // {
+      //   title: '标签',
+      //   dataIndex: 'tags',
+      //   key: 'tags',
+      //   render: (text, record) => (
+      //     record.tags.map((it, i) => (
+      //       <p key={i}>{it}</p>
+      //     ))
+      //   )
+      // },
       {
         title: '简要',
         key: 'summary',

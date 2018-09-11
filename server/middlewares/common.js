@@ -11,6 +11,7 @@ export const addLogger = app => {
   app.use(logger())
 }
 
+// session中间件
 export const addSession = app => {
   app.keys = ['imooc-trailer']
 
